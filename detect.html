@@ -12,15 +12,7 @@
     <a href="meli://home" id="appTarget" style="display: none;">Abrir Meli App</a>
 
     <script>
-        function eventFire(el, etype) {
-            if (el.fireEvent) {
-                (el.fireEvent('on' + etype));
-            } else {
-                var evObj = document.createEvent('Events');
-                evObj.initEvent(etype, true, false);
-                el.dispatchEvent(evObj);
-            }
-        }
+
 
         window.onload = function() {
             var hidden, visibilityState, visibilityChange;
@@ -52,6 +44,17 @@
                     alert(document[visibilityState]);
                 }, false);
             }
+
+            function eventFire(el, etype) {
+                if (el.fireEvent) {
+                    (el.fireEvent('on' + etype));
+                } else {
+                    var evObj = document.createEvent('Events');
+                    evObj.initEvent(etype, true, false);
+                    el.dispatchEvent(evObj);
+                }
+            }
+            eventFire(document.getElementById('appTarget'), 'click');
         };
 
         // if (document.addEventListener) {
@@ -66,7 +69,6 @@
         //     alert('no');
         // }
 
-        eventFire(document.getElementById('appTarget'), 'click');
     </script>
 </body>
 
