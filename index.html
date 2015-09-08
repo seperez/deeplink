@@ -1,52 +1,12 @@
 <html>
 <head>
-    <meta name="robots" content="noindex,follow">
-    <title>Redirecting...</title>
-    <noscript>
-        <meta http-equiv="refresh" content="0; url=##URL##">
-    </noscript>
+    <title>Deeplink</title>
+
+    <style>
+        a { font-size: 50px; }
+    </style>
 </head>
-
-<!-- <body onload="tryOpenApp()"> -->
 <body>
-    <a href="meli://home">Abrir Meli App</a>
-    <!-- <div id="container"></div> -->
-
-    <!-- <script>
-        function redirectToWeb() {
-            window.location.replace("##URL##");
-        }
-
-        window.timerRedirect = setTimeout(redirectToWeb, 1500);
-
-        function stopRedirect() {
-            clearTimeout(window.timerRedirect);
-        }
-
-        (function tryOpenApp() {
-            var iframe = document.createElement("iframe");
-            iframe.style.border = "none";
-            iframe.style.width = "1px";
-            iframe.style.height = "1px";
-            iframe.src = "##DEEP_LINK##";
-            document.getElementById("container").appendChild(iframe);
-        })();
-
-        function userWasRedirectToApp() {
-            stopRedirect();
-        }
-
-        if (window.document.addEventListener) {
-            window.document.addEventListener("visibilitychange", function(e) {
-                browserMovedToBackground = window.document.visibilityState === 'hidden' || window.document.visibilityState === 'unloaded';
-                if (browserMovedToBackground) {
-                    userWasRedirectToApp();
-                }
-
-            });
-        } else {
-            redirectToWeb();
-        }
-    </script> -->
+    <a href="detect.html" target="_blank">Detectar</a>
 </body>
 </html>
