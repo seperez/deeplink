@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <meta name="robots" content="noindex,follow">
     <title>Redirecting...</title>
@@ -6,29 +7,30 @@
         <meta http-equiv="refresh" content="0; url=##URL##">
     </noscript>
     <style>
-        a { display: none; }
+        a {
+            display: none;
+        }
     </style>
-    <script>
-        location.href="meli://home"
-    </script>
 </head>
 
 <!-- <body onload="tryOpenApp()"> -->
+
 <body>
-    <!-- <a href="meli://home" id="appTarget">Abrir Meli App</a>
+    <a href="meli://home" id="appTarget">Abrir Meli App</a>
 
     <script>
+        function eventFire(el, etype) {
+            if (el.fireEvent) {
+                (el.fireEvent('on' + etype));
+            } else {
+                var evObj = document.createEvent('Events');
+                evObj.initEvent(etype, true, false);
+                el.dispatchEvent(evObj);
+            }
+        }
 
-        window.onload = function() {
-            var $appTarget = document.getElementById("appTarget"),
-                fakeMouseEvent = document.createEvent('MouseEvents');
-
-            fakeMouseEvent.initMouseEvent("click", true, true, window,
-                0, 0, 0, 20, 10, false, false, false, false, 0, null);
-
-            $appTarget.dispatchEvent(fakeMouseEvent);
-        };
-    </script> -->
+        eventFire(document.getElementById('appTarget'), 'click');
+    </script>
     <!-- <div id="container"></div> -->
 
     <!-- <script>
@@ -68,4 +70,5 @@
         }
     </script> -->
 </body>
+
 </html>
