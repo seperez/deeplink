@@ -8,23 +8,27 @@
     <style>
         a { display: none; }
     </style>
+    <script>
+        location.href="meli://home"
+    </script>
 </head>
 
 <!-- <body onload="tryOpenApp()"> -->
 <body>
-    <a href="meli://home" id="appTarget">Abrir Meli App</a>
+    <!-- <a href="meli://home" id="appTarget">Abrir Meli App</a>
 
     <script>
+
         window.onload = function() {
-            var clickTarget = document.getElementById("appTarget");
-            var fakeMouseEvent = document.createEvent('MouseEvents');
+            var $appTarget = document.getElementById("appTarget"),
+                fakeMouseEvent = document.createEvent('MouseEvents');
 
             fakeMouseEvent.initMouseEvent("click", true, true, window,
                 0, 0, 0, 20, 10, false, false, false, false, 0, null);
 
-            clickTarget.dispatchEvent(fakeMouseEvent);
+            $appTarget.dispatchEvent(fakeMouseEvent);
         };
-    </script>
+    </script> -->
     <!-- <div id="container"></div> -->
 
     <!-- <script>
