@@ -22,13 +22,15 @@
             }
         }
 
-            alert('asdasdsad');
         if (document.addEventListener) {
+            alert('si');
             document.addEventListener("visibilitychange", function(e) {
                 if (document.visibilityState === 'hidden' || document.visibilityState === 'unloaded') {
-                    document.write(document.visibilityState);
+                    alert(document.visibilityState);
                 }
             });
+        }else{
+            alert('no');
         }
 
         eventFire(document.getElementById('appTarget'), 'click');
