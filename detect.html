@@ -21,12 +21,36 @@
                 el.dispatchEvent(evObj);
             }
         }
-        window.onBlur() {
-        	alert('blurred');
+
+        window.onload = function() {
+            var hidden, visibilityState, visibilityChange;
+
+            if (typeof document.hidden !== "undefined") {
+                hidden = "hidden";
+                visibilityChange = "visibilitychange";
+                visibilityState = "visibilityState";
+            } else if (typeof document.mozHidden !== "undefined") {
+                hidden = "mozHidden";
+                visibilityChange = "mozvisibilitychange";
+                visibilityState = "mozVisibilityState";
+            } else if (typeof document.msHidden !== "undefined") {
+                hidden = "msHidden";
+                visibilityChange = "msvisibilitychange";
+                visibilityState = "msVisibilityState";
+            } else if (typeof document.webkitHidden !== "undefined") {
+                hidden = "webkitHidden";
+                visibilityChange = "webkitvisibilitychange";
+                visibilityState = "webkitVisibilityState";
+            }
+
+            if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
+                document.addEventListener(visibilityChange, function() {
+                    alert("hidden: " + document[hidden]);
+                    alert(document[visibilityState]);
+                }, false);
+            }
         };
-        window.onFocus(){
-        	alert('focused');
-        };
+
         // if (document.addEventListener) {
         //     history.back();
         //     document.addEventListener("visibilitychange", function(e) {
