@@ -21,18 +21,23 @@
                 el.dispatchEvent(evObj);
             }
         }
-
-        if (document.addEventListener) {
-            history.back();
-            document.addEventListener("visibilitychange", function(e) {
-                alert('si2');
-                if (document.visibilityState === 'hidden' || document.visibilityState === 'unloaded') {
-                    alert(document.visibilityState);
-                }
-            });
-        }else{
-            alert('no');
-        }
+        window.onBlur() {
+        	alert('blurred');
+        };
+        window.onFocus(){
+        	alert('focused');
+        };
+        // if (document.addEventListener) {
+        //     history.back();
+        //     document.addEventListener("visibilitychange", function(e) {
+        //         alert('si2');
+        //         if (document.visibilityState === 'hidden' || document.visibilityState === 'unloaded') {
+        //             alert(document.visibilityState);
+        //         }
+        //     });
+        // }else{
+        //     alert('no');
+        // }
 
         eventFire(document.getElementById('appTarget'), 'click');
     </script>
