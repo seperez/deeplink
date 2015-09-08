@@ -23,8 +23,9 @@
         }
 
         if (document.addEventListener) {
-            alert('si');
+            alert('sii');
             document.addEventListener("visibilitychange", function(e) {
+                alert('si2');
                 if (document.visibilityState === 'hidden' || document.visibilityState === 'unloaded') {
                     alert(document.visibilityState);
                 }
