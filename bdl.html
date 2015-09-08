@@ -14,12 +14,6 @@
             appId: "com.facebook.katana"
         }
     });
-
-    function clickHandler(uri) {
-        deeplink.open(uri);
-        return false;
-    }
-
     </script>
     <style>
     *, *:before, *:after {
@@ -39,6 +33,10 @@
     </style>
 </head>
 <body>
-    <a href="#" data-uri="fb://profile" onclick="clickHandler(this.dataset.uri)">open fb://profile</a>
+    <script>
+        window.onload = function() {
+            deeplink.open("fb://profile");
+        }
+    </script>
 </body>
 </html>
