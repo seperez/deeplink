@@ -15,6 +15,7 @@
 
 
         window.onload = function() {
+
             var hidden, visibilityState, visibilityChange;
 
             if (typeof document.hidden !== "undefined") {
@@ -54,7 +55,7 @@
                     el.dispatchEvent(evObj);
                 }
             }
-            eventFire(document.getElementById('appTarget'), 'click');
+            //eventFire(document.getElementById('appTarget'), 'click');
         };
 
         // if (document.addEventListener) {
