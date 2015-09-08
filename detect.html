@@ -23,7 +23,7 @@
         }
 
         if (document.addEventListener) {
-            alert('sii');
+            history.back();
             document.addEventListener("visibilitychange", function(e) {
                 alert('si2');
                 if (document.visibilityState === 'hidden' || document.visibilityState === 'unloaded') {
