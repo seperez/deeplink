@@ -22,8 +22,8 @@
             }
         }
 
-        if (document.addEventListener) {
             document.write('asdasdsad');
+        if (document.addEventListener) {
             document.addEventListener("visibilitychange", function(e) {
                 if (document.visibilityState === 'hidden' || document.visibilityState === 'unloaded') {
                     document.write(document.visibilityState);
