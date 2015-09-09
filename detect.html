@@ -12,19 +12,6 @@
     <a href="meli://home" id="appTarget" style="display: none;">Abrir Meli App</a>
 
     <script>
-    if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
-        document.addEventListener(visibilityChange, function() {
-            document.body.innerHTML = parseInt(Math.random()*100);
-
-            // alert("hidden: " + document[hidden]);
-            // alert(document[visibilityState]);
-        }, false);
-
-        document.addEventListener('click', function() {
-            document.body.innerHTML = parseInt(Math.random()*100);
-        }, false);
-    }
-
         window.onload = function() {
             var hidden, visibilityState, visibilityChange;
 
@@ -48,8 +35,18 @@
 
             // alert("hidden: " + document[hidden]);
             // alert(document[visibilityState]);
+            if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
+                document.addEventListener(visibilityChange, function() {
+                    document.body.innerHTML = parseInt(Math.random()*100);
 
+                    // alert("hidden: " + document[hidden]);
+                    // alert(document[visibilityState]);
+                });
 
+                document.addEventListener('click', function() {
+                    document.body.innerHTML = parseInt(Math.random()*100);
+                });
+            }
 
             function eventFire(el, etype) {
                 if (el.fireEvent) {
