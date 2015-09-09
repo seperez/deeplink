@@ -37,10 +37,10 @@
             alert(document[visibilityState]);
 
             if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
-                alert('entra');
                 document.addEventListener(visibilityChange, function() {
-                    alert("hidden: " + document[hidden]);
-                    alert(document[visibilityState]);
+                    document.body.innerHTML = parseInt(Math.random()*100);
+                    // alert("hidden: " + document[hidden]);
+                    // alert(document[visibilityState]);
                 }, false);
             }
 
