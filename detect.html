@@ -34,7 +34,7 @@
             }
 
             if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
-                document.addEventListener(visibilityChange, function() {
+                document.addEventListener('visibilityChange', function() {
                     document.body.innerHTML = parseInt(Math.random()*100);
 
                     // alert("hidden: " + document[hidden]);
