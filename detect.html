@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <a href="meli://home" id="appTarget" style="display: none;">Abrir Meli App</a>
+    <a href="meli://home" id="appTarget" >Abrir Meli App</a>
     <script>
         window.onload = function() {
             // var hidden, visibilityState, visibilityChange;
@@ -58,7 +58,7 @@
                     el.dispatchEvent(evObj);
                 }
             }
-            eventFire(document.getElementById('appTarget'), 'click');
+            //eventFire(document.getElementById('appTarget'), 'click');
         };
 
         // if (document.addEventListener) {
