@@ -12,56 +12,54 @@
     <a href="meli://home" id="appTarget" style="display: none;">Abrir Meli App</a>
     <p id="demo"></p>
     <script>
-        document.addEventListener("click", function(){
-            document.getElementById("demo").innerHTML = "Hello World!";
-        });
-
         // window.onload = function() {
-        //     var hidden, visibilityState, visibilityChange;
-        //
-        //     if (typeof document.hidden !== "undefined") {
-        //         hidden = "hidden";
-        //         visibilityChange = "visibilitychange";
-        //         visibilityState = "visibilityState";
-        //     } else if (typeof document.mozHidden !== "undefined") {
-        //         hidden = "mozHidden";
-        //         visibilityChange = "mozvisibilitychange";
-        //         visibilityState = "mozVisibilityState";
-        //     } else if (typeof document.msHidden !== "undefined") {
-        //         hidden = "msHidden";
-        //         visibilityChange = "msvisibilitychange";
-        //         visibilityState = "msVisibilityState";
-        //     } else if (typeof document.webkitHidden !== "undefined") {
-        //         hidden = "webkitHidden";
-        //         visibilityChange = "webkitvisibilitychange";
-        //         visibilityState = "webkitVisibilityState";
-        //     }
-        //
-        //     // alert("hidden: " + document[hidden]);
-        //     // alert(document[visibilityState]);
-        //     if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
-        //         document.addEventListener(visibilityChange, function() {
-        //             document.body.innerHTML = parseInt(Math.random()*100);
-        //
-        //             // alert("hidden: " + document[hidden]);
-        //             // alert(document[visibilityState]);
-        //         });
-        //
-        //         document.addEventListener('click', function() {
-        //             document.body.innerHTML = parseInt(Math.random()*100);
-        //         });
-        //     }
-        //
-        //     function eventFire(el, etype) {
-        //         if (el.fireEvent) {
-        //             (el.fireEvent('on' + etype));
-        //         } else {
-        //             var evObj = document.createEvent('Events');
-        //             evObj.initEvent(etype, true, false);
-        //             el.dispatchEvent(evObj);
-        //         }
-        //     }
-        //     //eventFire(document.getElementById('appTarget'), 'click');
+            var hidden, visibilityState, visibilityChange;
+
+            if (typeof document.hidden !== "undefined") {
+                hidden = "hidden";
+                visibilityChange = "visibilitychange";
+                visibilityState = "visibilityState";
+            } else if (typeof document.mozHidden !== "undefined") {
+                hidden = "mozHidden";
+                visibilityChange = "mozvisibilitychange";
+                visibilityState = "mozVisibilityState";
+            } else if (typeof document.msHidden !== "undefined") {
+                hidden = "msHidden";
+                visibilityChange = "msvisibilitychange";
+                visibilityState = "msVisibilityState";
+            } else if (typeof document.webkitHidden !== "undefined") {
+                hidden = "webkitHidden";
+                visibilityChange = "webkitvisibilitychange";
+                visibilityState = "webkitVisibilityState";
+            }
+
+            if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
+                document.addEventListener(visibilityChange, function() {
+                    document.body.innerHTML = parseInt(Math.random()*100);
+
+                    // alert("hidden: " + document[hidden]);
+                    // alert(document[visibilityState]);
+                });
+
+                // document.addEventListener('click', function() {
+                //     document.body.innerHTML = parseInt(Math.random()*100);
+                // });
+
+                document.addEventListener("click", function(){
+                    document.getElementById("demo").innerHTML = "Hello World!";
+                });
+            }
+
+            // function eventFire(el, etype) {
+            //     if (el.fireEvent) {
+            //         (el.fireEvent('on' + etype));
+            //     } else {
+            //         var evObj = document.createEvent('Events');
+            //         evObj.initEvent(etype, true, false);
+            //         el.dispatchEvent(evObj);
+            //     }
+            // }
+            //eventFire(document.getElementById('appTarget'), 'click');
         // };
 
         // if (document.addEventListener) {
