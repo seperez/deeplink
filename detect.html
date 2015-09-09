@@ -35,7 +35,7 @@
 
             if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
                 document.addEventListener('visibilityChange', function() {
-                    document.body.innerHTML = parseInt(Math.random()*100);
+                    document.body.style.backgroundColor = "red";
 
                     // alert("hidden: " + document[hidden]);
                     // alert(document[visibilityState]);
