@@ -33,8 +33,8 @@
                 visibilityState = "webkitVisibilityState";
             }
 
-            alert("hidden: " + document[hidden]);
-            alert(document[visibilityState]);
+            // alert("hidden: " + document[hidden]);
+            // alert(document[visibilityState]);
 
             if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
                 document.addEventListener(visibilityChange, function() {
