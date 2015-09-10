@@ -12,9 +12,21 @@
     <a href="meli://home" id="appTarget" style="display: none;" >Abrir Meli App</a>
 
     <script>
+        // Native Android Browser
+        var navU = navigator.userAgent,
+            isAndroidMobile = navU.indexOf('Android') > -1 && navU.indexOf('Mozilla/5.0') > -1 && navU.indexOf('AppleWebKit') > -1,
+            regExAppleWebKit = new RegExp(/AppleWebKit\/([\d.]+)/),
+            resultAppleWebKitRegEx = regExAppleWebKit.exec(navU),
+            appleWebKitVersion = (resultAppleWebKitRegEx === null ? null : parseFloat(regExAppleWebKit.exec(navU)[1])),
+            regExChrome = new RegExp(/Chrome\/([\d.]+)/),
+            resultChromeRegEx = regExChrome.exec(navU),
+            chromeVersion = (resultChromeRegEx === null ? null : parseFloat(regExChrome.exec(navU)[1])),
+            isAndroidBrowser = isAndroidMobile && (appleWebKitVersion !== null && appleWebKitVersion >= 537) && (chromeVersion !== null && chromeVersion < 29);
+
         (function detect(){
             this.redirectTimer = undefined;
             this.$targetEl = document.getElementById('appTarget');
+            this.appUrl = this.$targetEl.href;
             //this.fallbackUrl = "##URL##";
             this.fallbackUrl = "http://www.mercadolibre.com.ar";
 
@@ -37,6 +49,18 @@
                 clearTimeout(window.timerRedirect);
             };
 
+            this.openAppWithFrame = function(){
+                var $body = document.querySelector("body"),
+                    $iframe = document.createElement("iframe");
+
+                iframe.style.border = "none";
+                iframe.style.width = "1px";
+                iframe.style.height = "1px";
+                iframe.src = this.appUrl;
+
+                $body.appendChild(iframe);
+            };
+
             this.bindEvents = function(){
                 var that = this;
 
@@ -57,17 +81,13 @@
                 // Inicializa listeners de eventos
                 this.bindEvents();
 
-                // Simula el evento click sobre un link
-                // para abrir la app
-                //this.eventFire(this.$targetEl, 'click');
-                var iframe = document.createElement("iframe");
-                iframe.style.border = "none";
-                iframe.style.width = "1px";
-                iframe.style.height = "1px";
-                // iframe.src = "##DEEP_LINK##";
-                iframe.src = 'meli://home';
-                document.querySelector("body").appendChild(iframe);
-
+                if(isAndroidBrowser){
+                    this.openAppWithFrame();
+                }else{
+                    // Simula el evento click sobre un link
+                    // para abrir la app
+                    this.eventFire(this.$targetEl, 'click');
+                }
             }
 
             this.init();
