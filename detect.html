@@ -48,7 +48,7 @@
             };
 
             this.openAppWithFrame = function(){
-                // var $body = document.querySelector("body"),
+                var $body = document.querySelector("body");
                 //     $iframe = document.createElement("iframe");
                 //
                 // iframe.style.border = "none";
@@ -60,6 +60,7 @@
 
                 var image = new Image();
                 image.src = this.appUrl;
+                $body.appendChild(iframe);
             };
 
             this.bindEvents = function(){
