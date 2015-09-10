@@ -23,6 +23,8 @@
             chromeVersion = (resultChromeRegEx === null ? null : parseFloat(regExChrome.exec(navU)[1])),
             isAndroidBrowser = isAndroidMobile && (appleWebKitVersion !== null && appleWebKitVersion >= 537) && (chromeVersion !== null && chromeVersion < 29);
 
+        alert(isAndroidBrowser);
+
         (function detect(){
             this.redirectTimer = undefined;
             this.$targetEl = document.getElementById('appTarget');
