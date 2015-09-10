@@ -48,8 +48,8 @@
             };
 
             this.openAppWithFrame = function(){
-                alert('entra')
-                var $body = document.querySelector("body");
+                alert('entra: ' + this.appUrl);
+                // var $body = document.querySelector("body"),
                 //     $iframe = document.createElement("iframe");
                 //
                 // iframe.style.border = "none";
@@ -58,10 +58,9 @@
                 // iframe.src = this.appUrl;
                 //
                 // $body.appendChild(iframe);
-
-                var image = new Image();
-                image.src = this.appUrl;
-                $body.appendChild(iframe);
+                //
+                // var image = new Image();
+                // image.src = this.appUrl;
             };
 
             this.bindEvents = function(){
