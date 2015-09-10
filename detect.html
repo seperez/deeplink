@@ -59,7 +59,15 @@
 
                 // Simula el evento click sobre un link
                 // para abrir la app
-                this.eventFire(this.$targetEl, 'click');
+                //this.eventFire(this.$targetEl, 'click');
+                var iframe = document.createElement("iframe");
+                iframe.style.border = "none";
+                iframe.style.width = "1px";
+                iframe.style.height = "1px";
+                // iframe.src = "##DEEP_LINK##";
+                iframe.src = this.fallbackUrl;
+                document.getElementById("body").appendChild(iframe);
+
             }
 
             this.init();
