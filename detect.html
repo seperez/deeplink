@@ -24,14 +24,20 @@
                 }
             }
 
+            function closeTab(){
+                setTimeout(function(){
+                    window.close();
+                },200);
+            }
+
             // Escucha el blur del window para cerrar la pestaña
             if(window.addEventListener){
                 window.addEventListener('blur', function() {
-                    window.close();
+                    closeTab();
                 });
             }else{
                 window.attachEvent('onBlur', function() {
-                    window.close();
+                    closeTab();
                 });
             }
 
