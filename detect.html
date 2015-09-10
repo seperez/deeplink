@@ -13,8 +13,10 @@
 
     <script>
         (function detect(){
+            this.redirectTimer = undefined;
+
             // Facade para trigger un evento
-            function eventFire(el, etype) {
+            this.eventFire = function(el, etype) {
                 if (el.fireEvent) {
                     (el.fireEvent('on' + etype));
                 } else {
@@ -22,21 +24,42 @@
                     evObj.initEvent(etype, true, false);
                     el.dispatchEvent(evObj);
                 }
+            };
+
+            this.redirectFallback = function(){
+                window.location.replace("##URL##");
+            };
+
+            this.cancelRedirectFallback = function(){
+                clearTimeout(window.timerRedirect);
+            };
+
+            this.bindEvents = function(){
+                var that = this;
+
+                if(window.addEventListener){
+                    // Escucha el blur del window para cerrar la pestaña
+                    window.addEventListener('blur', function() {
+                        that.cancelRedirectFallback();
+                        window.close();
+                    });
+                }
+            };
+
+            this.init = function(){
+                // Si luego de un tiempo no se abrío la app
+                // se realiza una redireccion a la version web
+                this.redirectTimer = setTimeout(this.redirectFallback, 1500);
+
+                // Inicializa listeners de eventos
+                this.bindEvents();
+
+                // Simula el evento click sobre un link
+                // para abrir la app
+                this.eventFire(document.getElementById('appTarget'), 'click');
             }
 
-            // Escucha el blur del window para cerrar la pestaña
-            if(window.addEventListener){
-                window.addEventListener('blur', function() {
-                    window.close();
-                });
-            }else{
-                window.attachEvent('onBlur', function() {
-                    window.close();
-                });
-            }
-
-            // Simula el evento click sobre un link
-            eventFire(document.getElementById('appTarget'), 'click');
+            this.init();
         })();
     </script>
 </body>
