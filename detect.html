@@ -10,52 +10,10 @@
 
 <body>
     <a href="meli://home" id="appTarget" style="display: none;" >Abrir Meli App</a>
+
     <script>
-        // window.onload = function() {
-            // var hidden, visibilityState, visibilityChange;
-            //
-            // if (typeof document.hidden !== "undefined") {
-            //     hidden = "hidden";
-            //     visibilityChange = "visibilitychange";
-            //     visibilityState = "visibilityState";
-            // } else if (typeof document.mozHidden !== "undefined") {
-            //     hidden = "mozHidden";
-            //     visibilityChange = "mozvisibilitychange";
-            //     visibilityState = "mozVisibilityState";
-            // } else if (typeof document.msHidden !== "undefined") {
-            //     hidden = "msHidden";
-            //     visibilityChange = "msvisibilitychange";
-            //     visibilityState = "msVisibilityState";
-            // } else if (typeof document.webkitHidden !== "undefined") {
-            //     hidden = "webkitHidden";
-            //     visibilityChange = "webkitvisibilitychange";
-            //     visibilityState = "webkitVisibilityState";
-            // }
-            //
-            // if (typeof document.addEventListener !== "undefined" && typeof hidden !== "undefined") {
-            //     document.addEventListener('blur', function() {
-            //         document.body.style.backgroundColor = "red";
-            //
-            //         // alert("hidden: " + document[hidden]);
-            //         // alert(document[visibilityState]);
-            //     });
-            //
-            //     // document.addEventListener('click', function() {
-            //     //     document.body.innerHTML = parseInt(Math.random()*100);
-            //     // });
-            //
-            //     document.addEventListener("click", function(){
-            //         document.getElementById("demo").innerHTML = "World!sadsdsads";
-            //     });
-            // }
-            //
-
-            if(window.addEventListener){
-                window.addEventListener('blur', function() {
-                    window.close();
-                });
-            }
-
+        (function detect(){
+            // Facade para trigger un evento
             function eventFire(el, etype) {
                 if (el.fireEvent) {
                     (el.fireEvent('on' + etype));
@@ -65,8 +23,21 @@
                     el.dispatchEvent(evObj);
                 }
             }
+
+            // Escucha el blur del window para cerrar la pestaña
+            if(window.addEventListener){
+                window.addEventListener('blur', function() {
+                    window.close();
+                });
+            }else{
+                window.attachEvent('onBlur', function() {
+                    window.close();
+                });
+            }
+
+            // Simula el evento click sobre un link
             eventFire(document.getElementById('appTarget'), 'click');
-        // };
+        })();
     </script>
 </body>
 
