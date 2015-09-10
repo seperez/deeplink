@@ -11,19 +11,6 @@
 <body>
     <a href="meli://home" id="appTarget" >Abrir Meli App</a>
     <script>
-        if(window.addEventListener){
-            window.addEventListener('blur', function() {
-                document.body.style.backgroundColor = "red";
-                alert('addEventListener blur');
-            });
-        }else{
-            window.attachEvent('blur', function() {
-                document.body.style.backgroundColor = "red";
-                alert('attachEvent blur');
-            });
-        }
-
-
         // window.onload = function() {
             // var hidden, visibilityState, visibilityChange;
             //
@@ -62,16 +49,23 @@
             //     });
             // }
             //
-            // function eventFire(el, etype) {
-            //     if (el.fireEvent) {
-            //         (el.fireEvent('on' + etype));
-            //     } else {
-            //         var evObj = document.createEvent('Events');
-            //         evObj.initEvent(etype, true, false);
-            //         el.dispatchEvent(evObj);
-            //     }
-            // }
-            // eventFire(document.getElementById('appTarget'), 'click');
+
+            if(window.addEventListener){
+                window.addEventListener('blur', function() {
+                    history.back();
+                });
+            }
+
+            function eventFire(el, etype) {
+                if (el.fireEvent) {
+                    (el.fireEvent('on' + etype));
+                } else {
+                    var evObj = document.createEvent('Events');
+                    evObj.initEvent(etype, true, false);
+                    el.dispatchEvent(evObj);
+                }
+            }
+            eventFire(document.getElementById('appTarget'), 'click');
         // };
     </script>
 </body>
