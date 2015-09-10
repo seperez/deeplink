@@ -11,7 +11,20 @@
 <body>
     <a href="meli://home" id="appTarget" >Abrir Meli App</a>
     <script>
-        window.onload = function() {
+        if(window.addEventListener){
+            window.addEventListener('blur', function() {
+                document.body.style.backgroundColor = "red";
+                alert('addEventListener blur');
+            });
+        }else{
+            window.attachEvent('blur', function() {
+                document.body.style.backgroundColor = "red";
+                alert('attachEvent blur');
+            });
+        }
+
+
+        // window.onload = function() {
             // var hidden, visibilityState, visibilityChange;
             //
             // if (typeof document.hidden !== "undefined") {
@@ -48,31 +61,18 @@
             //         document.getElementById("demo").innerHTML = "World!sadsdsads";
             //     });
             // }
-
-            function eventFire(el, etype) {
-                if (el.fireEvent) {
-                    (el.fireEvent('on' + etype));
-                } else {
-                    var evObj = document.createEvent('Events');
-                    evObj.initEvent(etype, true, false);
-                    el.dispatchEvent(evObj);
-                }
-            }
-            //eventFire(document.getElementById('appTarget'), 'click');
-        };
-
-        // if (document.addEventListener) {
-        //     history.back();
-        //     document.addEventListener("visibilitychange", function(e) {
-        //         alert('si2');
-        //         if (document.visibilityState === 'hidden' || document.visibilityState === 'unloaded') {
-        //             alert(document.visibilityState);
-        //         }
-        //     });
-        // }else{
-        //     alert('no');
-        // }
-
+            //
+            // function eventFire(el, etype) {
+            //     if (el.fireEvent) {
+            //         (el.fireEvent('on' + etype));
+            //     } else {
+            //         var evObj = document.createEvent('Events');
+            //         evObj.initEvent(etype, true, false);
+            //         el.dispatchEvent(evObj);
+            //     }
+            // }
+            // eventFire(document.getElementById('appTarget'), 'click');
+        // };
     </script>
 </body>
 
