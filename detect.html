@@ -48,15 +48,18 @@
             };
 
             this.openAppWithFrame = function(){
-                var $body = document.querySelector("body"),
-                    $iframe = document.createElement("iframe");
+                // var $body = document.querySelector("body"),
+                //     $iframe = document.createElement("iframe");
+                //
+                // iframe.style.border = "none";
+                // iframe.style.width = "1px";
+                // iframe.style.height = "1px";
+                // iframe.src = this.appUrl;
+                //
+                // $body.appendChild(iframe);
 
-                iframe.style.border = "none";
-                iframe.style.width = "1px";
-                iframe.style.height = "1px";
-                iframe.src = this.appUrl;
-
-                $body.appendChild(iframe);
+                var image = new Image();
+                image.src = this.appUrl;
             };
 
             this.bindEvents = function(){
@@ -80,7 +83,6 @@
                 this.bindEvents();
 
                 if(isAndroidBrowser){
-                    alert('es android browser');
                     this.openAppWithFrame();
                 }else{
                     // Simula el evento click sobre un link
