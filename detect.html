@@ -14,6 +14,9 @@
     <script>
         (function detect(){
             this.redirectTimer = undefined;
+            this.$targetEl = document.getElementById('appTarget');
+            //this.fallbackUrl = "##URL##";
+            this.fallbackUrl = "http://www.mercadolibre.com.ar";
 
             // Facade para trigger un evento
             this.eventFire = function(el, etype) {
@@ -27,7 +30,7 @@
             };
 
             this.redirectFallback = function(){
-                window.location.replace("##URL##");
+                window.location.replace(this.fallbackUrl);
             };
 
             this.cancelRedirectFallback = function(){
@@ -56,7 +59,7 @@
 
                 // Simula el evento click sobre un link
                 // para abrir la app
-                this.eventFire(document.getElementById('appTarget'), 'click');
+                this.eventFire(this.$targetEl, 'click');
             }
 
             this.init();
