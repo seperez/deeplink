@@ -13,17 +13,27 @@
 
     <script>
         // Native Android Browser
-        var navU = navigator.userAgent,
-            isAndroidMobile = navU.indexOf('Android') > -1 && navU.indexOf('Mozilla/5.0') > -1 && navU.indexOf('AppleWebKit') > -1,
-            regExAppleWebKit = new RegExp(/AppleWebKit\/([\d.]+)/),
-            resultAppleWebKitRegEx = regExAppleWebKit.exec(navU),
-            appleWebKitVersion = (resultAppleWebKitRegEx === null ? null : parseFloat(regExAppleWebKit.exec(navU)[1])),
-            regExChrome = new RegExp(/Chrome\/([\d.]+)/),
-            resultChromeRegEx = regExChrome.exec(navU),
-            chromeVersion = (resultChromeRegEx === null ? null : parseFloat(regExChrome.exec(navU)[1])),
-            isAndroidBrowser = isAndroidMobile && (appleWebKitVersion !== null && appleWebKitVersion >= 537) && (chromeVersion !== null && chromeVersion < 29);
+        // var navU = navigator.userAgent,
+        //     isAndroidMobile = navU.indexOf('Android') > -1 && navU.indexOf('Mozilla/5.0') > -1 && navU.indexOf('AppleWebKit') > -1,
+        //     regExAppleWebKit = new RegExp(/AppleWebKit\/([\d.]+)/),
+        //     resultAppleWebKitRegEx = regExAppleWebKit.exec(navU),
+        //     appleWebKitVersion = (resultAppleWebKitRegEx === null ? null : parseFloat(regExAppleWebKit.exec(navU)[1])),
+        //     regExChrome = new RegExp(/Chrome\/([\d.]+)/),
+        //     resultChromeRegEx = regExChrome.exec(navU),
+        //     chromeVersion = (resultChromeRegEx === null ? null : parseFloat(regExChrome.exec(navU)[1])),
+        //     isAndroidBrowser = isAndroidMobile && (appleWebKitVersion !== null && appleWebKitVersion >= 537) && (chromeVersion !== null && chromeVersion < 29);
 
-        alert(isAndroidBrowser);
+        var navU = navigator.userAgent;
+        // Android Mobile
+        var isAndroidMobile = navU.indexOf('Android') > -1 && navU.indexOf('Mozilla/5.0') > -1 && navU.indexOf('AppleWebKit') > -1;
+        // Android Browser (not Chrome)
+        var regExAppleWebKit = new RegExp(/AppleWebKit\/([\d.]+)/);
+        var resultAppleWebKitRegEx = regExAppleWebKit.exec(navU);
+        var appleWebKitVersion = (resultAppleWebKitRegEx === null ? null : parseFloat(regExAppleWebKit.exec(navU)[1]));
+        var isAndroidBrowser = isAndroidMobile && appleWebKitVersion !== null && appleWebKitVersion < 537;
+
+
+        alert('isAndroidBrowser', isAndroidBrowser);
 
         (function detect(){
             this.redirectTimer = undefined;
