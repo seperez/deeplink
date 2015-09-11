@@ -10,23 +10,39 @@
 
 <body>
     <a href="meli://home" id="appTarget" style="display: none;" >Abrir Meli App</a>
+    <div id="container"></div>
 
     <script>
         var navU = navigator.userAgent,
-            // Android Mobile
             isAndroidMobile = navU.indexOf('Android') > -1 && navU.indexOf('Mozilla/5.0') > -1 && navU.indexOf('AppleWebKit') > -1,
-            // Android Browser (not Chrome)
             regExAppleWebKit = new RegExp(/AppleWebKit\/([\d.]+)/),
             resultAppleWebKitRegEx = regExAppleWebKit.exec(navU),
             appleWebKitVersion = (resultAppleWebKitRegEx === null ? null : parseFloat(regExAppleWebKit.exec(navU)[1])),
             isAndroidBrowser = isAndroidMobile && appleWebKitVersion !== null && appleWebKitVersion < 537;
 
-        (function detect(){
-            this.redirectTimer = undefined;
+        var fallback = (function(){
+            var url = "http://www.mercadolibre.com.ar";
+
+            var redirect = function(){
+                window.location.replace(url);
+            };
+
+            var cancelRedirect = function(){
+                clearTimeout(redirectTimer);
+            };
+
+            // Si luego de un tiempo no se abrío la app
+            // se realiza una redirección a la version web
+            var redirectTimer = setTimeout(redirect, 1500);
+
+            return {
+                cancelRedirect: cancelRedirect
+            }
+        })();
+
+        (function detect(fallback){
             this.$targetEl = document.getElementById('appTarget');
             this.appUrl = this.$targetEl.href;
-            //this.fallbackUrl = "##URL##";
-            this.fallbackUrl = "http://www.mercadolibre.com.ar";
 
             // Facade para trigger un evento
             this.eventFire = function(el, etype) {
@@ -39,28 +55,13 @@
                 }
             };
 
-            this.redirectFallback = function(){
-                window.location.replace(this.fallbackUrl);
-            };
-
-            this.cancelRedirectFallback = function(){
-                clearTimeout(window.timerRedirect);
-            };
-
             this.openAppWithFrame = function(){
-                alert('entra: ' + this.appUrl);
-                // var $body = document.querySelector("body"),
-                //     $iframe = document.createElement("iframe");
-                //
-                // iframe.style.border = "none";
-                // iframe.style.width = "1px";
-                // iframe.style.height = "1px";
-                // iframe.src = this.appUrl;
-                //
-                // $body.appendChild(iframe);
-                //
-                // var image = new Image();
-                // image.src = this.appUrl;
+                var iframe = document.createElement("iframe");
+                iframe.style.border = "none";
+                iframe.style.width = "1px";
+                iframe.style.height = "1px";
+                iframe.src = this.appUrl;
+                document.getElementById("container").appendChild(iframe);
             };
 
             this.bindEvents = function(){
@@ -69,17 +70,13 @@
                 if(window.addEventListener){
                     // Escucha el blur del window para cerrar la pestaña
                     window.addEventListener('blur', function() {
-                        that.cancelRedirectFallback();
+                        fallback.cancelRedirect();
                         window.close();
                     });
                 }
             };
 
             this.init = function(){
-                // Si luego de un tiempo no se abrío la app
-                // se realiza una redireccion a la version web
-                this.redirectTimer = setTimeout(this.redirectFallback, 1500);
-
                 // Inicializa listeners de eventos
                 this.bindEvents();
 
@@ -90,10 +87,11 @@
                     // para abrir la app
                     this.eventFire(this.$targetEl, 'click');
                 }
-            }
+            };
 
             this.init();
-        })();
+            
+        })(fallback);
     </script>
 </body>
 

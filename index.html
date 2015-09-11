@@ -7,6 +7,11 @@
     </style>
 </head>
 <body>
-    <a href="detect.html?_=7678eqwe6786" target="_blank">Detectar</a>
+    <a id="redirectLink" href="detect.html" target="_blank">Detectar</a>
+
+    <script>
+        var $a = document.getElementById('redirectLink');
+        $a.href = $a.href + '?_=' + (parseInt(Math.random()*10000));
+    </script>
 </body>
 </html>
