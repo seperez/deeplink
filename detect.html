@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <!-- Reemplazar el href por el link a la app-->
     <a href="meli://home" id="appTarget" style="display: none;" >Abrir Meli App</a>
     <div id="container"></div>
 
@@ -21,6 +22,9 @@
             isAndroidBrowser = isAndroidMobile && appleWebKitVersion !== null && appleWebKitVersion < 537;
 
         var fallback = (function(){
+            // Reemplazar por una url de fallback
+            // para el caso en el que no se haya podido
+            // abrir la app
             var url = "http://www.mercadolibre.com.ar";
 
             var redirect = function(){
@@ -90,7 +94,7 @@
             };
 
             this.init();
-            
+
         })(fallback);
     </script>
 </body>
